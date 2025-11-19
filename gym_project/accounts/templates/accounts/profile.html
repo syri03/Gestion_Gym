@@ -1,0 +1,15 @@
+{% extends "accounts/base.html" %}
+{% block title %}Mon Profil{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3>Modifier mon profil</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
