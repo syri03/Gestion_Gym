@@ -2,14 +2,41 @@
 {% block title %}Mon Profil{% endblock %}
 
 {% block content %}
-<div class="card">
-    <div class="card-body">
-        <h3>Modifier mon profil</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Sauvegarder</button>
-        </form>
+<div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4>Mon Profil</h4>
+            </div>
+            <div class="card-body">
+
+                <!-- Infos personnelles -->
+                <h5 class="text-primary">Informations personnelles</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                </form>
+
+                <hr>
+
+                <!-- Changer le mot de passe -->
+                <h5 class="text-danger mt-4">Changer mon mot de passe</h5>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ password_form.as_p }}
+                    <button type="submit" name="change_password" class="btn btn-danger">
+                        Changer le mot de passe
+                    </button>
+                </form>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} mt-3">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
